@@ -1,4 +1,3 @@
-
 gui, Color, F2EDE0
 Gui, Add, Picture, x42 y0 w343 h347 , doge.png
 
@@ -97,7 +96,7 @@ ButtonRescanBlockchain:
 
 MsgBox, 36, , Rescanning the blockchain is very time consuming and rarely necessary.  Are you sure you want to continue?
     IfMsgBox, Yes
-	;Run, %exedir%\dogecoin-qt.exe -datadir=%datadir% -rescan
+	Run, %exedir%\dogecoin-qt.exe -datadir=%datadir% -rescan
 	IfMsgBox, No
         return
 
