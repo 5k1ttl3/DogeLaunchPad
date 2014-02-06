@@ -19,3 +19,7 @@ YES - This application WILL work fine with any other major *-QT fork. Im sure it
 
 
 Thats about it for now.
+
+
+
+NOTE! - As with any application that deals with sensetive or valuvable data - BACK UP YOUR DATA BEFORE USING. To the best of my knowledge, this application should not have the ability to do harm to your wallet. but BACK IT UP FIRST. I can not and will not be held responsible for any damages resulting from the use of the software.
