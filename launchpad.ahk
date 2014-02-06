@@ -1,5 +1,6 @@
+
 gui, Color, F2EDE0
-Gui, Add, Picture, x42 y0 w343 h347 , doge.png
+Gui, Add, Picture, x73 y0 w300 h300 , doge.png
 
 Gui, Add, Button, x220 y330 w60 h30 , datadir
 Gui, Add, Text, x280 y330 w150 h30 , Set your Data Directory Here
