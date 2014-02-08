@@ -94,27 +94,33 @@ return
 
 ButtonRescanBlockchain:
 
+
+;-----------------------Check if dogecoin-qt.exe process is currently active
+Process, wait, dogecoin-qt.exe, .5
+NewPID = %ErrorLevel%  ; Save the value immediately since ErrorLevel is often changed.
+if NewPID != 0
+{
+    MsgBox Dogecoin-QT already appears to be running. Please close the application and try again.
+    return
+
+	
+	}
+else {
 MsgBox, 36, , Rescanning the blockchain is very time consuming and rarely necessary.  Are you sure you want to continue?
     IfMsgBox, Yes 
-    Process, wait, dogecoin-qt.exe, .5
-	NewPID = %ErrorLevel%  ; Save the value immediately since ErrorLevel is often changed.
-	if NewPID != 0
-	{
-	 MsgBox Dogecoin-QT already appears to be running. Please close the application and try again.
-    	return
-	}
-	else {
-
 	Run, %exedir%\dogecoin-qt.exe -datadir=%datadir% -rescan
-	}
-	return
-    
-    
-    
-    
-;	Run, %exedir%\dogecoin-qt.exe -datadir=%datadir% -rescan
 	IfMsgBox, No
-        return
+	Return
+
+
+
+
+
+
+}
+return
+
+
 
 return
 
