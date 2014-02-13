@@ -1,6 +1,8 @@
 DogeLaunchPad
 =============
 
+<img src=http://i.imgur.com/Lvuxebi.png>
+
 A windows application for easily launching dogecoin-QT with some advanced parameters
 
 
