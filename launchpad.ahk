@@ -13,6 +13,8 @@ Gui, Add, Edit, x12 y370 w200 h30  vExeDirEdit
 Gui, Show, x613 y322 h580 w446, Dogecoin Launchpad
 Gui, Font, underline
 Gui, Add, Text, cBlue gDogecoinReddit, Visit Dogecoin Subreddit
+Gui, Add, Text, cBlue gCheckbal, Check DogeTipBot Balance
+Gui, Add, Text, cBlue gWithdraw, Withdraw DogeTipBot Balance
 Gui, Font, norm
 Gui, Show
 
@@ -42,6 +44,13 @@ DogecoinReddit:
 Run http://dogecoin.reddit.com
 return		
 
+Checkbal:
+Run http://www.reddit.com/message/compose?to=dogetipbot&subject=history&message=`%2Bhistory
+return		
+
+Withdraw:
+Run http://www.reddit.com/message/compose?to=dogetipbot&subject=withdraw&message=`%2Bwithdraw`%20ADDRESS`%20AMOUNT`%20doge
+return		
 
 
 Buttondatadir:
