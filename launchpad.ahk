@@ -1,6 +1,7 @@
 gui, Color, F2EDE0
-Gui, Add, Picture, x73 y0 w300 h300 , doge.png
-
+Gui, Add, Picture, x0 y0 w430 h150 , doge.png
+Gui, Add, Edit, x12 y160 w200 h30 vTipAmmountEdit
+Gui, Add, Text, x215 y160 w150 h30 , Set Default Tip Ammount in DOGE
 Gui, Add, Button, x220 y330 w60 h30 , datadir
 Gui, Add, Text, x280 y330 w150 h30 , Set your Data Directory Here
 Gui, Add, Button, x220 y370 w60 h30 , exedir
@@ -21,7 +22,6 @@ Gui, Show
 
 
 
-
 ;-----------------------------------------Read config.txt file into memory
 FileReadLine, line, config.txt, 1
 if ErrorLevel {
@@ -36,6 +36,17 @@ msgbox Looks like its your first time using DogeCoin Launchpad! (That, or someth
 }
 exedir=%line%
 GuiControl,, ExeDirEdit, %exedir%
+FileReadLine, line, config.txt, 3
+if ErrorLevel {
+msgbox Looks like its your first time using DogeCoin Launchpad! (That, or something went horribly wrong)
+}
+tipammount=%line%
+GuiControl,, TipAmmountEdit, %tipammount%
+Return
+
+;---------------------------------------Code to insert Tip Ammount - escape chars around PLUS and slashes necessary
+~^LButton::
+send {+}`/u`/dogetipbot %tipammount% doge
 Return
 
 
@@ -86,6 +97,7 @@ return
 
 
 ButtonSaveSettings:
+
 Gui, Submit, NoHide ;this command submits the guis' datas' state
 
 ;--------------------------------------remove old config.txt
@@ -95,7 +107,7 @@ FileAppend,
 (
 %datadir%
 %exedir%
-
+%TipAmmountEdit%
 ), config.txt
 return
 
