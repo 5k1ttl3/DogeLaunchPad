@@ -18,7 +18,7 @@ ur dogez? You dont. So read it.
 I'll include a compiled binary in the full releases, but seriously. AutoHotKey is the tits. Just install it and use the latest AHK file so you know exactly what code you're running.
 
 
-The application displays a graphic. Its a 300x300 px PNG file (doge.png) . I include one in the major releases, but you can use anything you like obviously. If you've come up with something awesome I'd be glad to use it. Contact me.
+The application displays a graphic. Its a 430x150 px PNG file (doge.png) . I include one in the major releases, but you can use anything you like obviously. If you've come up with something awesome I'd be glad to use it. Contact me.
 
 
 YES - This application WILL work fine with any other major *-QT fork. Im sure it would come in handy for both Litecoin and Bitcoin.
