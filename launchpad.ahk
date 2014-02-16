@@ -2,52 +2,72 @@ gui, Color, F2EDE0
 Gui, Add, Picture, x0 y0 w430 h150 , doge.png
 Gui, Add, Edit, x12 y160 w200 h30 vTipAmmountEdit
 Gui, Add, Text, x215 y160 w150 h30 , Set Default Tip Ammount in DOGE
+Gui, Add, CheckBox, vVerify, Verify
 Gui, Add, Button, x220 y330 w60 h30 , datadir
 Gui, Add, Text, x280 y330 w150 h30 , Set your Data Directory Here
 Gui, Add, Button, x220 y370 w60 h30 , exedir
 Gui, Add, Text, x280 y370 w150 h30 , Set your Dogecoin-qt.exe Directory Here
 Gui, Add, Button, x188 y450 w70 h30 , launch
-Gui, Add, Button, x336 y540 w90 h30 , Save Settings
+Gui, Add, Button, x336 y540 w90 h30 , Save And Restart
 Gui, Add, Button, x20 y540 w90 h30 , Rescan Blockchain
 Gui, Add, Edit, x12 y330 w200 h30 vDataDirEdit
 Gui, Add, Edit, x12 y370 w200 h30  vExeDirEdit
 Gui, Show, x613 y322 h580 w446, Dogecoin Launchpad
 Gui, Font, underline
 Gui, Add, Text, cBlue gDogecoinReddit, Visit Dogecoin Subreddit
-Gui, Add, Text, cBlue gCheckbal, Check DogeTipBot Balance
+Gui, Add, Text, cBlue gCheckbal, Check DogeTipBot History
 Gui, Add, Text, cBlue gWithdraw, Withdraw DogeTipBot Balance
 Gui, Font, norm
 Gui, Show
 
 
 
+;-----------------------------------------Read Config file section:
 
-;-----------------------------------------Read config.txt file into memory
+;-----------------------------------------Read Line 1 (EXE Dir) from config.txt, set variables
 FileReadLine, line, config.txt, 1
 if ErrorLevel {
 ;msgbox Error reading from config file
 }
 datadir=%line%
 GuiControl,, DataDirEdit, %datadir%
-;--------------------------------------Read line 2 (Data Dir) from config.txt
+;-----------------------------------------Read line 2 (Data Dir) from config.txt, set variables
 FileReadLine, line, config.txt, 2
 if ErrorLevel {
 msgbox Looks like its your first time using DogeCoin Launchpad! (That, or something went horribly wrong)
 }
 exedir=%line%
 GuiControl,, ExeDirEdit, %exedir%
+;-----------------------------------------Read line 3 (Default Tip Amt) from config.txt, set variables
 FileReadLine, line, config.txt, 3
 if ErrorLevel {
 msgbox Looks like its your first time using DogeCoin Launchpad! (That, or something went horribly wrong)
 }
 tipammount=%line%
 GuiControl,, TipAmmountEdit, %tipammount%
+
+;-----------------------------------------Read line 4 (VERIFY flag) from config.txt, set variables
+FileReadLine, line, config.txt, 4
+if ErrorLevel {
+msgbox Looks like its your first time using DogeCoin Launchpad! (That, or something went horribly wrong)
+}
+verify=%line%
+GuiControl,, Verify, %verify%
 Return
+
+
 
 ;---------------------------------------Code to insert Tip Ammount - escape chars around PLUS and slashes necessary
 ~^LButton::
+if (verify = 1)
+{
+send {+}`/u`/dogetipbot %tipammount% doge verify
+return
+}
+else {
 send {+}`/u`/dogetipbot %tipammount% doge
-Return
+}
+return
 
 
 
@@ -96,7 +116,7 @@ return
 
 
 
-ButtonSaveSettings:
+ButtonSaveAndRestart:
 
 Gui, Submit, NoHide ;this command submits the guis' datas' state
 
@@ -108,7 +128,9 @@ FileAppend,
 %datadir%
 %exedir%
 %TipAmmountEdit%
+%verify%
 ), config.txt
+Reload
 return
 
 
