@@ -34,14 +34,14 @@ GuiControl,, DataDirEdit, %datadir%
 ;-----------------------------------------Read line 2 (Data Dir) from config.txt, set variables
 FileReadLine, line, config.txt, 2
 if ErrorLevel {
-msgbox Looks like its your first time using DogeCoin Launchpad! (That, or something went horribly wrong)
+;msgbox Looks like its your first time using DogeCoin Launchpad! (That, or something went horribly wrong)
 }
 exedir=%line%
 GuiControl,, ExeDirEdit, %exedir%
 ;-----------------------------------------Read line 3 (Default Tip Amt) from config.txt, set variables
 FileReadLine, line, config.txt, 3
 if ErrorLevel {
-msgbox Looks like its your first time using DogeCoin Launchpad! (That, or something went horribly wrong)
+;msgbox Looks like its your first time using DogeCoin Launchpad! (That, or something went horribly wrong)
 }
 tipammount=%line%
 GuiControl,, TipAmmountEdit, %tipammount%
