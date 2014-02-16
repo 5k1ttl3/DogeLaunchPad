@@ -1,9 +1,11 @@
 DogeLaunchPad
 =============
 
-<img src=http://i.imgur.com/Lvuxebi.png>
+<img src=http://i.imgur.com/xDSjf46.png>
+NOW WITH MORE TIPBOT INTEGRATION!
 
-A windows application for easily launching dogecoin-QT with some advanced parameters
+
+A windows application for easily launching dogecoin-QT with some advanced parameters, as well as features to make reddit tipping smoother.
 
 
 This application is written in Autohotkey. Its only about 100 lines and should be fairly easy to read. I'd strongly recommend that you DO read and understand it, just like anything crypto related. How else do you know I'm not stealing all
