@@ -1,7 +1,7 @@
 DogeLaunchPad
 =============
 
-<img src=http://i.imgur.com/xDSjf46.png>
+<img src=http://i.imgur.com/uguTc7X.png>
 
 
 NOW WITH MORE TIPBOT INTEGRATION!
