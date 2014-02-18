@@ -1,24 +1,41 @@
 gui, Color, F2EDE0
+
+Menu, FileMenu, Add, E&xit, ExitHandler
+Menu, HelpMenu, Add, &About, AboutHandler
+Menu, ConfigureMenu, Add, Set &Data Dir, DataDirHandler
+Menu, ConfigureMenu, Add, Set &Exe Dir, ExeDirHandler
+Menu, ConfigureMenu, Add, View Config, ConfigHandler
+Menu, MyMenuBar, Add, &File, :FileMenu  ; Attach the two sub-menus that were created above.
+Menu, MyMenuBar, Add, &Config, :ConfigureMenu
+Menu, MyMenuBar, Add, &Help, :HelpMenu
+
+Gui, Menu, MyMenuBar
+
+
 Gui, Add, Picture, x0 y0 w430 h150 , doge.png
 Gui, Add, Edit, x12 y160 w200 h30 vTipAmmountEdit
 Gui, Add, Text, x215 y160 w150 h30 , Set Default Tip Ammount in DOGE
 Gui, Add, CheckBox, vVerify, Verify
-Gui, Add, Button, x220 y330 w60 h30 , datadir
-Gui, Add, Text, x280 y330 w150 h30 , Set your Data Directory Here
-Gui, Add, Button, x220 y370 w60 h30 , exedir
-Gui, Add, Text, x280 y370 w150 h30 , Set your Dogecoin-qt.exe Directory Here
-Gui, Add, Button, x188 y450 w70 h30 , launch
-Gui, Add, Button, x336 y540 w90 h30 , Save And Restart
-Gui, Add, Button, x20 y540 w90 h30 , Rescan Blockchain
-Gui, Add, Edit, x12 y330 w200 h30 vDataDirEdit
-Gui, Add, Edit, x12 y370 w200 h30  vExeDirEdit
-Gui, Show, x613 y322 h580 w446, Dogecoin Launchpad
+;Gui, Add, Button, x220 y330 w60 h30 , datadir
+Gui, Add, Text, x220 y230 w150 h30 , This is your currently selected Data Directory
+;Gui, Add, Button, x220 y370 w60 h30 , exedir
+Gui, Add, Text, x220 y270 w150 h30 , This is your currently selected Exe Directory
+Gui, Add, Button, x188 y425 w70 h30 , launch
+Gui, Add, Button, x336 y475 w90 h30 , Save And Restart
+Gui, Add, Button, x20 y475 w90 h30 , Rescan Blockchain
+Gui, Add, Edit, x12 y230 w200 h30 vDataDirEdit +ReadOnly ;y difference 40px
+Gui, Add, Edit, x12 y270 w200 h30  vExeDirEdit +ReadOnly
+Gui, Show, x613 y322 h525 w446, Dogecoin Launchpad
 Gui, Font, underline
-Gui, Add, Text, cBlue gDogecoinReddit, Visit Dogecoin Subreddit
+Gui, Add, Text, x12 y320 cBlue gDogecoinReddit, Visit Dogecoin Subreddit
 Gui, Add, Text, cBlue gCheckbal, Check DogeTipBot History
 Gui, Add, Text, cBlue gWithdraw, Withdraw DogeTipBot Balance
 Gui, Font, norm
 Gui, Show
+
+
+
+
 
 
 
@@ -68,6 +85,41 @@ else {
 send {+}`/u`/dogetipbot %tipammount% doge
 }
 return
+
+
+
+;-------------------------------MENU HANDLERS---------------------
+
+MenuFileOpen:
+return
+
+ExitHandler:
+ExitApp
+return
+
+AboutHandler:
+Msgbox Much Version! Very number! Such Development! `n VERSION 1.338
+return
+
+DataDirHandler:
+FileSelectFolder, datadir
+GuiControl,, DataDirEdit, %datadir%
+return
+
+ExeDirHandler:
+FileSelectFolder, exedir
+GuiControl,, ExeDirEdit, %exedir%
+return
+
+ConfigHandler:
+Msgbox Wow! Such Configuration! `n Executable Directiory: %exedir% `n Data Directory: %datadir%
+
+return
+
+
+
+
+
 
 
 
